@@ -1,6 +1,7 @@
 # TDS2018
 ## Dependencies
 [SFML 2](https://www.sfml-dev.org/download/sfml/2.4.2/)
+
 [mingw\(For compiling in windows\)](https://sourceforge.net/projects/mingw-w64/files/Toolchains%20targetting%20Win32/Personal%20Builds/mingw-builds/installer/mingw-w64-install.exe/download)
 ## Compile
 ```bash
