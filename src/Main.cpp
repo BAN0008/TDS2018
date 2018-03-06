@@ -33,6 +33,17 @@ int main(int argc, char* argv[])
 
 	texPlayer.loadFromFile("res/Player3.tga");
 	
+	//Remove Me
+	sf::Font font;
+	if (!font.loadFromFile("res/arial.ttf"))
+	{
+		std::cout << "Can't Load Font" << std::endl;
+	}
+	sf::Text text;
+	text.setFont(font);
+	//text.setCharacterSize(12);
+	text.setFillColor(sf::Color::Blue);
+
 	sf::SoundBuffer sndbufGun;
 	sndbufGun.loadFromFile("res/Gun.wav");
 	sndGun.setBuffer(sndbufGun);
@@ -100,17 +111,12 @@ int main(int argc, char* argv[])
 					break;
 				case NPC_ID:
 					static_cast<NPC*>(gameObjects[i])->update(player);
-					sf::Text text;
-					sf::Font font;
-					if (!font.loadFromFile("res/arial.ttf"))
-					{
-					    std::cout << "Can't Open Font" << std::endl;
-					}
-					text.setFont(font);
+
 					text.setString(std::to_string(static_cast<NPC*>(gameObjects[i])->pathPosition));
-					text.setCharacterSize(12);
-					text.setFillColor(sf::Color::Blue);
-					text.setStyle(sf::Text::Bold | sf::Text::Underlined);
+					//std::cout << (std::string)text.getString();
+					text.setPosition(gameObjects[i]->x, gameObjects[i]->y - 64);
+					//text.setPosition(64, 64);
+					//text.setString("Test");
 					window.draw(text);
 					break;
 			}

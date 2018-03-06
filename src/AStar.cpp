@@ -301,12 +301,30 @@ int Path::generatePath()
 		}
 		*/
 	}
+	path[0]->vx = (path[1]->x * 32) - (path[0]->x * 32);
+	path[0]->vy = (path[1]->y * 32) - (path[0]->y * 32);
+	double length = std::sqrt((path[0]->vx * path[0]->vx) + (path[0]->vy * path[0]->vy));
+	path[0]->vx = path[0]->vx / length;
+	path[0]->vy = path[0]->vy / length;
+
 }
 
 Path::Point::Point(Node* node, Point* prevPoint)
 {
 	x = node->x;
 	y = node->y;
+
+	if (prevPoint != nullptr)
+	{
+		prevPoint->vx = (prevPoint->x * 32) - (x * 32);
+		prevPoint->vy = (prevPoint->y * 32) - (y * 32);
+		double length = std::sqrt((prevPoint->vx * prevPoint->vx) + (prevPoint->vy * prevPoint->vy));
+		prevPoint->vx = prevPoint->vx / length;
+		prevPoint->vy = prevPoint->vy / length;
+	}
+	vx = 0;
+	vy = 0;
+	/*
 	if (prevPoint != nullptr)
 	{
 		vx = (prevPoint->x * 32) - (x * 32);
@@ -320,6 +338,7 @@ Path::Point::Point(Node* node, Point* prevPoint)
 	}
 	//vx = 0;
 	//vy = 0;
+	*/
 }
 
 Path::Point* Path::operator[](unsigned i)

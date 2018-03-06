@@ -14,6 +14,8 @@ NPC::NPC(int _x, int _y) : path(2560 / 32, 1080 / 32)
 	originX = 23;
 	originY = 23;
 
+	std::cout << "start position {" << x << ", " << y << '}' << std::endl;
+
 	sprite.setTexture(texPlayer);
 	sprite.setOrigin(23.0f, 23.0f);
 	sprite.setTextureRect(sf::IntRect(0, 0, 68, 48));
@@ -41,8 +43,8 @@ NPC::NPC(int _x, int _y) : path(2560 / 32, 1080 / 32)
 		gameObjects.push_back(new Player(path[i]->x * 32, path[i]->y * 32));
 	}*/
 	path.print(x / 32, y / 32, 50, 20);
-	x = path[0]->x * 32;
-	y = path[0]->y * 32;
+	//x = path[0]->x * 32;
+	//y = path[0]->y * 32;
 }
 
 void NPC::fire(int _x, int _y)
@@ -106,7 +108,6 @@ void NPC::update(GameObject* _player)
 		cooldown--;
 	}
 
-
 	if (sf::Keyboard::isKeyPressed(sf::Keyboard::U))
 	{
 		pathPosition++;
@@ -126,7 +127,9 @@ void NPC::update(GameObject* _player)
 			pathPosition++;
 		}
 		*/
-		
+		bool xMet = false;
+		bool yMet = false;
+
 		for (int i = 0; i < abs(path[pathPosition]->vy * speed); i++)
 		{
 			if (y != path[pathPosition]->y * 32)
@@ -136,6 +139,7 @@ void NPC::update(GameObject* _player)
 			else
 			{
 				//pathPosition++;
+				yMet = true;
 				break;
 			}
 		}
@@ -147,11 +151,23 @@ void NPC::update(GameObject* _player)
 			}
 			else
 			{
-				pathPosition++;
+				xMet = true;
+				//pathPosition++;
 				break;
 			}
 		}
-
+		if (x == path[pathPosition]->x * 32)
+		{
+			xMet = true;
+		}
+		if (y == path[pathPosition]->y * 32)
+		{
+			yMet = true;
+		}
+		if (xMet && yMet)
+		{
+			pathPosition++;
+		}
 		//std::cout << (path[pathPosition]->vx) * fmin(abs(path[pathPosition]->vx * speed), abs(path[pathPosition]->vx - x));
 		//std::cout << fmin(abs(path[pathPosition]->vx * speed), abs(path[pathPosition]->vx - x));
 		//std::cout << path[pathPosition]->vx;
