@@ -4,6 +4,7 @@
 #define PLAYER_ID 0
 #define NPC_ID 1
 #define WALL_ID 2
+#define BULLET_ID 3
 
 #include <vector>
 #include <SFML/Graphics.hpp>
@@ -11,6 +12,8 @@
 #include "GameObject.h"
 
 extern sf::Texture texPlayer;
+extern sf::Texture texBullet;
+
 extern sf::Sound sndGun;
 extern bool globalSound;
 

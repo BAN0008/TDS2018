@@ -71,7 +71,7 @@ void NPC::fire(int _x, int _y)
 	}
 }
 
-void NPC::update(GameObject* _player)
+void NPC::update()
 {
 	if (health <= 0)
 	{
@@ -99,7 +99,7 @@ void NPC::update(GameObject* _player)
 			{
 				sndGun.play();
 			}
-			fire(_player->x, _player->y);
+			//fire(_player->x, _player->y);
 		}
 	}
 

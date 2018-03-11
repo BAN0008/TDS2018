@@ -1,5 +1,6 @@
 #include "NPC.h"
 #include "Player.h"
+#include "Bullet.h"
 #include "Global.h"
 
 #include <math.h>
@@ -129,9 +130,14 @@ void Player::fire(int _x, int _y)
 {
 	sf::Vector2f pos(x + originX, y + originY);
 	sf::Vector2f vec(_x - pos.x, _y - pos.y);
-	float length = sqrt((vec.x * vec.x) + (vec.y * vec.y));
+	float length = std::sqrt((vec.x * vec.x) + (vec.y * vec.y));
 	sf::Vector2f direction(vec / length);
 
+	gameObjects.push_back(new Bullet(this, direction));
+	//static_cast<Bullet*>(gameObjects[gameObjects.size() - 1])->direction = direction;
+	static_cast<Bullet*>(gameObjects[gameObjects.size() - 1])->speed = 32;
+
+	/*
 	while (true)
 	{
 		GameObject* col = GameObject::collisionPoint(pos.x, pos.y);
@@ -147,4 +153,5 @@ void Player::fire(int _x, int _y)
 		}
 		pos += direction;
 	}
+	*/
 }

@@ -2,6 +2,8 @@
 #include <math.h> //For checkLineOfSight()
 
 sf::Texture texPlayer;
+sf::Texture texBullet;
+
 sf::Sound sndGun;
 bool globalSound;
 

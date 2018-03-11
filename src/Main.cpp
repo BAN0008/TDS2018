@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 	const sf::VideoMode vm = sf::VideoMode::getDesktopMode();
 	const int resolutionX = vm.width;
 	const int resolutionY = vm.height;
-	sf::RenderWindow window(sf::VideoMode(resolutionX, resolutionY), "Top Down Shooter"/*, sf::Style::Fullscreen*/);
+	sf::RenderWindow window(sf::VideoMode(resolutionX, resolutionY), "Top Down Shooter", sf::Style::Fullscreen);
 	
 	windowPtr = &window;
 
@@ -30,19 +30,8 @@ int main(int argc, char* argv[])
 	//Load Resources
 	sf::Texture texCursor;
 	texCursor.loadFromFile("res/Cursor.tga");
-
 	texPlayer.loadFromFile("res/Player3.tga");
-	
-	//Remove Me
-	sf::Font font;
-	if (!font.loadFromFile("res/arial.ttf"))
-	{
-		std::cout << "Can't Load Font" << std::endl;
-	}
-	sf::Text text;
-	text.setFont(font);
-	//text.setCharacterSize(12);
-	text.setFillColor(sf::Color::Blue);
+	texBullet.loadFromFile("res/Bullet.tga");
 
 	sf::SoundBuffer sndbufGun;
 	sndbufGun.loadFromFile("res/Gun.wav");
@@ -100,17 +89,21 @@ int main(int argc, char* argv[])
 			view.setCenter(player->x + (player->w / 2), player->y + (player->h / 2));
 		}
 
-		window.clear(sf::Color(127, 0, 0));
+		window.clear(sf::Color(0, 0, 0));
 
 		for (int i = 0; i < gameObjects.size(); i++)
 		{
+			gameObjects[i]->update();
+			gameObjects[i]->draw(&window);
+			//window.draw(gameObjects[i]->sprite);
+			/*
 			switch (gameObjects[i]->objectID)
 			{
 				case PLAYER_ID:
 					static_cast<Player*>(gameObjects[i])->update();
 					break;
 				case NPC_ID:
-					static_cast<NPC*>(gameObjects[i])->update(player);
+					static_cast<NPC*>(gameObjects[i])->update();
 
 					text.setString(std::to_string(static_cast<NPC*>(gameObjects[i])->pathPosition));
 					//std::cout << (std::string)text.getString();
@@ -120,7 +113,7 @@ int main(int argc, char* argv[])
 					window.draw(text);
 					break;
 			}
-			window.draw(gameObjects[i]->sprite);
+			*/
 		}
 
 		window.setView(window.getDefaultView());

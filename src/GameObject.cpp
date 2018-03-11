@@ -74,3 +74,9 @@ GameObject::~GameObject()
 		}
 	}
 }
+
+void GameObject::update() {}
+void GameObject::draw(sf::RenderWindow* window)
+{
+	window->draw(sprite);
+}

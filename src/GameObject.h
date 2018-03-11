@@ -1,12 +1,14 @@
 #ifndef GAMEOBJECT_H
 #define GAMEOBJECT_H
 
+#include <SFML/Graphics/RenderWindow.hpp>
 #include <SFML/Graphics/Sprite.hpp>
 
 class GameObject
 {
 public:
-	int x, y, w, h, originX, originY;
+	double x, y;
+	int w, h, originX, originY;
 	sf::Sprite sprite;
 	bool placeFree(int _x, int _y); //Should this be private?
 
@@ -15,5 +17,8 @@ public:
 	~GameObject(); //Likely causing "pure virtual method called" runtime error
 
 	int objectID;
+
+	virtual void update();
+	virtual void draw(sf::RenderWindow* window);
 };
 #endif

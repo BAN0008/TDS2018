@@ -14,7 +14,7 @@ public:
 	NPC(int _x, int _y);
 
 	void fire(int _x, int _y);
-	void update(GameObject* _player);
+	void update() override;
 private:
 	bool followPath = true;
 	int speed = 5;
