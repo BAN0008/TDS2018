@@ -30,7 +30,7 @@ int main(int argc, char* argv[])
 	//Load Resources
 	sf::Texture texCursor;
 	texCursor.loadFromFile("res/Cursor.tga");
-	texPlayer.loadFromFile("res/Player3.tga");
+	texPlayer.loadFromFile("res/Player4.tga");
 	texBullet.loadFromFile("res/Bullet.tga");
 
 	sf::SoundBuffer sndbufGun;

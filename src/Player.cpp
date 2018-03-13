@@ -82,7 +82,7 @@ void Player::update()
 		}
 		sf::Vector2f mousePos = getMousePosition();
 		fire(mousePos.x, mousePos.y);
-		cooldown = 5;
+		cooldown = 25;
 		sprite.setTextureRect(sf::IntRect(0, 48, 68, 48)); //Offset is wrong to create a shaking effect
 	}
 
