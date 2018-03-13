@@ -10,7 +10,7 @@ public:
 	Bullet(GameObject* master, sf::Vector2f direction);
 	void update() override;
 //private:
-	double speed;
+	double speed = 128;
 	sf::Vector2f direction;
 	GameObject* master;
 };
