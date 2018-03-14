@@ -1,5 +1,4 @@
 #include <math.h>
-#include <iostream>
 #include "Bullet.h"
 #include "Global.h"
 
@@ -7,8 +6,6 @@ Bullet::Bullet(GameObject* master, sf::Vector2f direction) : master(master), dir
 {
 	x = master->x + master->originX;
 	y = master->y + master->originY;
-	originX = 0;
-	originY = 0;
 	/*
 	sprite.setTexture(texBullet);
 	w = 8;
@@ -20,12 +17,19 @@ Bullet::Bullet(GameObject* master, sf::Vector2f direction) : master(master), dir
 	originX = 3;
 	originY = 3;
 	*/
-	std::cout << direction.x << std::endl;
-	std::cout << direction.y << std::endl;
 	sf::Image image;
 	float length = 64.0f;
-	image.create(std::max(length * abs(direction.x), 1.0f), std::max(length * abs(direction.y), 1.0f), sf::Color(255, 0, 0, 255));
 	sf::Color colour(255, 255, 0, 255);
+	sprite.setOrigin(length / 2.0f, 0.0f);
+	image.create(length, 1.0f);
+	for (int i = 0; i < length; i++)
+	{
+		image.setPixel(i, 0, colour);
+	}
+	originX = length / 2.0f;
+	originY = 0;
+	/*
+	image.create(std::max(length * abs(direction.x), 1.0f), std::max(length * abs(direction.y), 1.0f), sf::Color(255, 0, 0, 255));
 	for (float i = 0; i < length; i++)
 	{
 		int px, py;
@@ -51,21 +55,19 @@ Bullet::Bullet(GameObject* master, sf::Vector2f direction) : master(master), dir
 			image.setPixel(px, py, colour);
 		}
 	}
+	*/
 	sf::Texture* texture;
 	texture = new sf::Texture();
 	texture->create(image.getSize().x, image.getSize().y);
 	texture->update(image);
 	sprite.setTexture(*texture);
+	sprite.setRotation(atan2(direction.y, direction.x) * (180 / M_PI));
 
 }
 
 void Bullet::update()
 {
-	std::cout << "Bullet Update" << std::endl;
-	std::cout << direction.x << std::endl;
-	//std::cout <<  << std::endl;
-	std::cout << std::floor(direction.x * speed) << std::endl;
-	x += std::floor(direction.x * speed);
-	y += std::floor(direction.y * speed);
+	x += direction.x * speed;
+	y += direction.y * speed;
 	sprite.setPosition(x + originX, y + originY);
 }

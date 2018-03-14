@@ -135,7 +135,7 @@ void Player::fire(int _x, int _y)
 
 	gameObjects.push_back(new Bullet(this, direction));
 	//static_cast<Bullet*>(gameObjects[gameObjects.size() - 1])->direction = direction;
-	static_cast<Bullet*>(gameObjects[gameObjects.size() - 1])->speed = 4;
+	static_cast<Bullet*>(gameObjects[gameObjects.size() - 1])->speed = 32;
 
 	/*
 	while (true)
