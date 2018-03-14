@@ -24,7 +24,8 @@ int main(int argc, char* argv[])
 	
 	windowPtr = &window;
 
-	window.setFramerateLimit(60);
+	//window.setFramerateLimit(60);
+	window.setVerticalSyncEnabled(true);
 	window.setMouseCursorVisible(false);
 
 	//Load Resources
