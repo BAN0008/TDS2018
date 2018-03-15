@@ -86,7 +86,7 @@ void Bullet::update()
 			newTexture->update(tempImage);
 			collision->sprite.setTexture(*newTexture);
 			delete this;
-			goto end;
+			goto end; //Jump to end of update so that the object doesn't try to access any of it's members(eg sprite)
 		}
 	}
 	sprite.setPosition(x + originX, y + originY);
