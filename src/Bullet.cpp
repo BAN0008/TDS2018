@@ -67,7 +67,23 @@ Bullet::Bullet(GameObject* master, sf::Vector2f direction) : master(master), dir
 
 void Bullet::update()
 {
-	x += direction.x * speed;
-	y += direction.y * speed;
+	for (int i = 0; i < speed; i++)
+	{
+		GameObject* collision = collisionPoint(x + direction.x, y + direction.y);
+		if (collision == nullptr)
+		{
+			x += direction.x * speed;
+			y += direction.y * speed;
+		}
+		else
+		{
+			sf::Image tempImage = collision->sprite.getTexture()->copyToImage();
+			sf::Color colour(0.0f, 0.0f, 0.0f, 0.0f);
+			tempImage.setPixel(colour);
+			sf::Texture *newTexture = new sf::Texture();
+			newTexture->update(tempImage);
+			collision->sprite.setTexture(*newTexture);
+		}
+	}
 	sprite.setPosition(x + originX, y + originY);
 }
