@@ -1,3 +1,4 @@
+#include <csignal>
 #include <math.h>
 #include "Bullet.h"
 #include "Global.h"
@@ -77,13 +78,22 @@ void Bullet::update()
 		}
 		else
 		{
-			sf::Image tempImage = collision->sprite.getTexture()->copyToImage();
-			sf::Color colour(0.0f, 0.0f, 0.0f, 0.0f);
-			tempImage.setPixel(colour);
-			sf::Texture *newTexture = new sf::Texture();
-			newTexture->update(tempImage);
-			collision->sprite.setTexture(*newTexture);
+			if (collision != master)
+			{
+				raise(SIGTRAP);
+				sf::Image tempImage = collision->sprite.getTexture()->copyToImage();
+				sf::Color colour(0.0f, 0.0f, 0.0f, 0.0f);
+				tempImage.setPixel(x - collision->x, y - collision->y, colour);
+				sf::Texture *newTexture = new sf::Texture();
+				newTexture->create(tempImage.getSize().x, tempImage.getSize().y);
+				newTexture->update(tempImage);
+				collision->sprite.setTexture(*newTexture);
+				delete this;
+				goto end;
+			}
 		}
 	}
 	sprite.setPosition(x + originX, y + originY);
+	end:
+	int temp = 0; //Remove Me
 }

@@ -94,8 +94,12 @@ int main(int argc, char* argv[])
 
 		for (int i = 0; i < gameObjects.size(); i++)
 		{
+			GameObject *deletionCheck = gameObjects[i];
 			gameObjects[i]->update();
-			gameObjects[i]->draw(&window);
+			if (deletionCheck == gameObjects[i])
+			{
+				gameObjects[i]->draw(&window);
+			}
 			//window.draw(gameObjects[i]->sprite);
 			/*
 			switch (gameObjects[i]->objectID)

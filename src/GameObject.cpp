@@ -70,12 +70,14 @@ GameObject::~GameObject()
 	{
 		if (gameObjects[i] == this)
 		{
+			gameObjects[i] = nullptr;
 			gameObjects.erase(gameObjects.begin() + i);
 		}
 	}
 }
 
 void GameObject::update() {}
+
 void GameObject::draw(sf::RenderWindow* window)
 {
 	window->draw(sprite);
