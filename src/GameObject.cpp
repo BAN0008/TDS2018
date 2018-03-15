@@ -51,12 +51,19 @@ bool GameObject::placeFree(int _x, int _y) //arguments named to stop conflicts b
 	return true;
 }
 
-GameObject* GameObject::collisionPoint(int _x, int _y)
+GameObject* GameObject::collisionPoint(int _x, int _y, std::vector<GameObject*>exclude)
 {
 	for (int i = 0; i < gameObjects.size(); i++)
 	{
-
-		if (_x >= gameObjects[i]->x && _x <= gameObjects[i]->x + gameObjects[i]->w && _y >= gameObjects[i]->y && _y <= gameObjects[i]->y + gameObjects[i]->h)
+		bool skip = false;
+		for (int j = 0; j < exclude.size(); j++)
+		{
+			if (gameObjects[i] == exclude[j])
+			{
+				skip = true;
+			}
+		}
+		if (!skip && _x >= gameObjects[i]->x && _x <= gameObjects[i]->x + gameObjects[i]->w && _y >= gameObjects[i]->y && _y <= gameObjects[i]->y + gameObjects[i]->h)
 		{
 			return gameObjects[i];
 		}

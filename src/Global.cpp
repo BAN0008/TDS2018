@@ -47,7 +47,7 @@ bool checkLineOfSight(GameObject* a, GameObject* b) //Should this be defined und
 
 			while (true)
 			{
-				GameObject* col = GameObject::collisionPoint(pos.x, pos.y);
+				GameObject* col = GameObject::collisionPoint(pos.x, pos.y, {});
 				if (col != nullptr && col != a)
 				{
 					if (col == b)

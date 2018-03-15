@@ -1,4 +1,4 @@
-#include <csignal>
+#include <csignal> //Remove Me
 #include <math.h>
 #include "Bullet.h"
 #include "Global.h"
@@ -70,7 +70,7 @@ void Bullet::update()
 {
 	for (int i = 0; i < speed; i++)
 	{
-		GameObject* collision = collisionPoint(x + direction.x, y + direction.y);
+		GameObject *collision = collisionPoint(x + direction.x, y + direction.y, {this, master});
 		if (collision == nullptr)
 		{
 			x += direction.x * speed;
@@ -78,19 +78,15 @@ void Bullet::update()
 		}
 		else
 		{
-			if (collision != master)
-			{
-				raise(SIGTRAP);
-				sf::Image tempImage = collision->sprite.getTexture()->copyToImage();
-				sf::Color colour(0.0f, 0.0f, 0.0f, 0.0f);
-				tempImage.setPixel(x - collision->x, y - collision->y, colour);
-				sf::Texture *newTexture = new sf::Texture();
-				newTexture->create(tempImage.getSize().x, tempImage.getSize().y);
-				newTexture->update(tempImage);
-				collision->sprite.setTexture(*newTexture);
-				delete this;
-				goto end;
-			}
+			sf::Image tempImage = collision->sprite.getTexture()->copyToImage();
+			sf::Color colour(0.0f, 0.0f, 0.0f, 0.0f);
+			tempImage.setPixel(x - collision->x, y - collision->y, colour);
+			sf::Texture *newTexture = new sf::Texture();
+			newTexture->create(tempImage.getSize().x, tempImage.getSize().y);
+			newTexture->update(tempImage);
+			collision->sprite.setTexture(*newTexture);
+			delete this;
+			goto end;
 		}
 	}
 	sprite.setPosition(x + originX, y + originY);

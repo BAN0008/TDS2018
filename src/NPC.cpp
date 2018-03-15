@@ -56,7 +56,7 @@ void NPC::fire(int _x, int _y)
 
 	while (true)
 	{
-		GameObject* col = GameObject::collisionPoint(pos.x, pos.y);
+		GameObject* col = GameObject::collisionPoint(pos.x, pos.y, {});
 		if (col != nullptr && col != this)
 		{
 			switch (col->objectID)

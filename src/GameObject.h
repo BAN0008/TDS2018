@@ -12,7 +12,7 @@ public:
 	sf::Sprite sprite;
 	bool placeFree(int _x, int _y); //Should this be private?
 
-	static GameObject* collisionPoint(int _x, int _y);
+	static GameObject* collisionPoint(int _x, int _y, std::vector<GameObject*> exclude);
 
 	~GameObject(); //Likely causing "pure virtual method called" runtime error
 
