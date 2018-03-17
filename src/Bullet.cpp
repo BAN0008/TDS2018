@@ -7,6 +7,7 @@ Bullet::Bullet(GameObject* master, sf::Vector2f direction) : master(master), dir
 {
 	x = master->x + master->originX;
 	y = master->y + master->originY;
+	objectID = BULLET_ID;
 	/*
 	sprite.setTexture(texBullet);
 	w = 8;
@@ -70,6 +71,7 @@ void Bullet::update()
 {
 	for (int i = 0; i < speed; i++)
 	{
+		//For some reason this return's a pointer to a object that isn't close
 		GameObject *collision = collisionPoint(x + direction.x, y + direction.y, {this, master});
 		if (collision == nullptr)
 		{
