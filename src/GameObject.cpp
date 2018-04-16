@@ -89,3 +89,19 @@ void GameObject::draw(sf::RenderWindow* window)
 {
 	window->draw(sprite);
 }
+
+
+/*
+std::vector<GameObject*> GameObject::checkCollisions(int checkX, int checkY)
+{
+	for (int i = 0; i < gameObjects[i]; i++)
+	{
+		int minX, minY
+		if ()
+		{
+			minY = ;
+			minX = ;
+		}
+	}
+}
+*/

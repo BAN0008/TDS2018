@@ -75,8 +75,8 @@ void Bullet::update()
 		GameObject *collision = collisionPoint(x + direction.x, y + direction.y, {this, master});
 		if (collision == nullptr)
 		{
-			x += direction.x * speed;
-			y += direction.y * speed;
+			x += direction.x;
+			y += direction.y;
 		}
 		else
 		{

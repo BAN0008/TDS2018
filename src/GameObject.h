@@ -21,4 +21,11 @@ public:
 	virtual void update();
 	virtual void draw(sf::RenderWindow* window);
 };
+
+class CollisionMask
+{
+public;
+	int x, y, w, h;
+}
+
 #endif
