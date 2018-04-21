@@ -24,8 +24,8 @@ public:
 
 class CollisionMask
 {
-public;
+public:
 	int x, y, w, h;
-}
+};
 
 #endif

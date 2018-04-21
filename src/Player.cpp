@@ -128,7 +128,13 @@ void Player::update()
 
 void Player::fire(int _x, int _y)
 {
-	sf::Vector2f pos(x + originX, y + originY);
+	const float angle = sprite.getRotation(); //TODO: change to radians
+	const sf::Vector2i firePoint(72, 31);
+
+	sf::Vector2i rotatedFirePoint(std::cos(angle) * );
+
+	//sf::Vector2f pos(x + originX, y + originY);
+	sf::Vector2f pos(rotatedFirePoint);
 	sf::Vector2f vec(_x - pos.x, _y - pos.y);
 	float length = std::sqrt((vec.x * vec.x) + (vec.y * vec.y));
 	sf::Vector2f direction(vec / length);

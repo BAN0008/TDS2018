@@ -1,0 +1,15 @@
+TDS2018 TODO:
+	Fix Pathfinding:
+		//NPCs not following path correctly because AStar.cpp is setting incorrect vx and vy values to the points in the path(I think)
+
+		Point.vx/vy should contain the velocity needed to reach Point.x/y not to reach the next point
+
+	Make Proper Guns with bullet objects
+
+	Design a proper test map with MapEditor
+
+	Start writing A.I for the NPCs
+
+	Add destructible materials to the map
+
+	Add multiplayer
